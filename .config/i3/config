@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:Ricty-Nerd-Font 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -40,6 +40,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# ScreenShot
+bindsym Shift+Ctrl+s exec flameshot gui
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -150,7 +153,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id \
+        "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -182,14 +186,24 @@ bindsym $mod+r mode "resize"
 #######################################
 
 # Screen brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id bash -c 'b=$(xrandr --verbose | grep -i brightness | head -n 1 | cut -d" " -f2) && b2=$(echo -e "import math\nf = lambda x: (1 - 1/(1+math.exp(4*x-2)))\nprint(\\\"%.2f\\\" % f(0.1+$b))" | python) && xrandr --output eDP --brightness $b2'
+
+bindsym XF86MonBrightnessDown exec --no-startup-id bash -c 'b=$(xrandr --verbose | grep -i brightness | head -n 1 | cut -d" " -f2) && b2=$(echo -e "import math\nf = lambda x: (1 - 1/(1+math.exp(4*x-2)))\nprint(\\\"%.2f\\\" % f(-0.1+$b))" | python) && xrandr --output eDP --brightness $b2'
 
 bindsym $mod+F2 exec firefox
+
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --shapes
+
+# compton
+exec --no-startup-id compton -cbm 0.90
+
+# dunst
+exec --no-startup-id dunst
+
+# Ghidra
+for_window [class="Ghidra"] floating enable
 
 #######################################
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
