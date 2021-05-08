@@ -1,0 +1,21 @@
+font:
+  normal:
+    family: Ricty-Nerd-Font
+    style: Regular
+
+  bold:
+    family: Ricty-Nerd-Font
+    style: Bold
+
+  italic:
+    family: Ricty-Nerd-Font
+    style: Italic
+
+  bold_italic:
+    family: Ricty-Nerd-Font
+    style: Bold Italic
+  size: 9
+
+env:
+    TERM: alacritty
+
