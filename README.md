@@ -1,2 +1,2 @@
 # dotfiles
-fish shell vim terminator configs
+It seems like 盆栽
