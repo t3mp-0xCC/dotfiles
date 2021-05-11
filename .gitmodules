@@ -1,3 +1,6 @@
 [submodule "rofi/rofi-themes"]
 	path = rofi/rofi-themes
 	url = https://github.com/davatorium/rofi-themes/
+[submodule "fish/informative_git_prompt"]
+	path = fish/informative_git_prompt
+	url = https://github.com/mariuszs/informative_git_prompt.git
