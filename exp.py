@@ -5,6 +5,7 @@ from pwn import *
 from sys import argv
 from time import sleep
 
+context.terminal = ['terminator','-e']
 context.log_level = "debug"
 
 chall = "./hoge"
