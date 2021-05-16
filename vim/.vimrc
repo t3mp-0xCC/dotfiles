@@ -4,15 +4,18 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set smartindent
+set smarttab
 
 syntax enable
 
+" 記号系自動補完
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 
+" 文字コード変換
 augroup vimrcEx
   autocmd!
   autocmd BufReadPost *
@@ -65,3 +68,15 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
+
+" バイナリエディタ(xxd)
+augroup BinaryXXD
+  autocmd!
+	autocmd BufReadPre  *.bin let &binary =1
+	autocmd BufReadPost * if &binary | silent %!xxd -g 1
+	autocmd BufReadPost * set ft=xxd | endif
+	autocmd BufWritePre * if &binary | %!xxd -r | endif
+	autocmd BufWritePost * if &binary | silent %!xxd -g 1
+	autocmd BufWritePost * set nomod | endif
+augroup END
+
