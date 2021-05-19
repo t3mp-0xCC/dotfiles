@@ -80,3 +80,10 @@ augroup BinaryXXD
 	autocmd BufWritePost * set nomod | endif
 augroup END
 
+" color
+set background=dark
+colorscheme hybrid
+hi LineNr ctermbg=7 ctermfg=0
+hi CursorLineNr ctermbg=3 ctermfg=0
+set cursorline
+hi clear CursorLine

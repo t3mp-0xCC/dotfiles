@@ -192,8 +192,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id bash -c 'b=$(xrandr --verbose
 
 bindsym $mod+F2 exec firefox
 
+# Wallpaper
+exec --no-startup-id nitrogen --restore
+
 # Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --shapes
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --cuts
 
 # compton
 exec --no-startup-id compton -cbm 0.90
@@ -204,7 +207,7 @@ exec --no-startup-id dunst
 # Ghidra
 for_window [class="Ghidra"] floating enable
 
-# gnome-shell (for pwntools geb.debug)
+# terminator (for pwntools geb.debug)
 for_window [class="terminator"] floating enable
 for_window [class="Terminator"] floating enable
 
