@@ -1,21 +1,18 @@
 font:
   normal:
-    family: Ricty-Nerd-Font
+    family: HackGenConsole
     style: Regular
 
   bold:
-    family: Ricty-Nerd-Font
+    family: HackGenConsole
     style: Bold
 
   italic:
-    family: Ricty-Nerd-Font
+    family: Anonymice Powerline
     style: Italic
 
   bold_italic:
-    family: Ricty-Nerd-Font
+    family: Anonymice Powerline
     style: Bold Italic
-  size: 9
-
-env:
-    TERM: alacritty
+  size: 8
 
