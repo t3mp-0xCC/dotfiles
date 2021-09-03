@@ -5,5 +5,5 @@
 	path = fish/informative_git_prompt
   url = https://github.com/mariuszs/informative_git_prompt.git
 [submodule "nvim/colors/Benokai.vim"]
-  path = nvim/colors/Benokai.vin
-  url = https://github.com/benjaminwhite/Benokai
+	path = nvim/colors/Benokai.vim
+	url = https://github.com/benjaminwhite/Benokai.git
