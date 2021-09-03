@@ -1,0 +1,7 @@
+# cache
+.cache/
+
+# nvim
+nvim/dein/cache_nvim
+nvim/dein/state_nvim.vim
+nvim/dein/repos/github.com/*
