@@ -3,4 +3,7 @@
 	url = https://github.com/davatorium/rofi-themes/
 [submodule "fish/informative_git_prompt"]
 	path = fish/informative_git_prompt
-	url = https://github.com/mariuszs/informative_git_prompt.git
+  url = https://github.com/mariuszs/informative_git_prompt.git
+[submodule "nvim/colors/Benokai.vim"]
+  path = nvim/colors/Benokai.vin
+  url = https://github.com/benjaminwhite/Benokai
