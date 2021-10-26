@@ -1,0 +1,25 @@
+font:
+  normal:
+    family: HackGenConsole
+    style: Regular
+
+  bold:
+    family: HackGenConsole
+    style: Bold
+
+  italic:
+    family: Anonymice Powerline
+    style: Italic
+
+  bold_italic:
+    family: Anonymice Powerline
+    style: Bold Italic
+  size: 8
+
+env:
+  TERM: xterm-256color
+
+colors:
+  primary:
+    background: '0x000000'
+    foreground: '0xbbc2cf'
