@@ -42,11 +42,20 @@ set tabstop=2
 set shiftwidth=2
 
 " color
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set t_Co=256
 syntax on
 colorscheme Benokai
 
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+
+" save cursor
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 
 " load .toml
 let s:dein_dir = expand('~/.config/nvim/dein')

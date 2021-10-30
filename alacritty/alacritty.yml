@@ -16,3 +16,10 @@ font:
     style: Bold Italic
   size: 8
 
+env:
+  TERM: xterm-256color
+
+colors:
+  primary:
+    background: '0x021514'
+    foreground: '0xbbc2cf'
