@@ -8,7 +8,7 @@ from time import sleep
 context.terminal = ['terminator','-e']
 context.log_level = "debug"
 
-chall = "./hoge"
+chall = "./chall"
 #libc = ELF()
 elf = ELF(chall)
 context.binary = chall
