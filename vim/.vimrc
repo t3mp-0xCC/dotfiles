@@ -87,3 +87,6 @@ hi LineNr ctermbg=8 ctermfg=0
 hi CursorLineNr ctermbg=3 ctermfg=0
 set cursorline
 hi clear CursorLine
+
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
