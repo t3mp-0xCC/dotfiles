@@ -1,0 +1,1 @@
+/home/t3mp/.fzf/shell/key-bindings.fish
