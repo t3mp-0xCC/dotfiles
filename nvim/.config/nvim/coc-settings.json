@@ -19,4 +19,9 @@
         }
     },
     "python.jediEnabled": false
+    "jedi": {
+    "enable": true,
+    "startupMessage": false,
+    "executable.command": "~/.config/coc/extensions/node_modules/coc-jedi/.venv/bin/jedi-language-server"
+  }
 }
