@@ -5,7 +5,7 @@ from pwn import *
 from sys import argv
 from time import sleep
 
-context.terminal = ['terminator','-e']
+context.terminal = ['tmux', 'sp', '-h']
 context.log_level = "debug"
 
 chall = "./chall"
