@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# for ctf
+# 配られたlibcが手元に無くても無理やりバイナリを動かすことが出来るようにパッチを行う
+#
+# forked from https://gist.github.com/tachibana51/a89a748eaebc8b080eb0b46c35233e0d  
+# modified by t3mp-0xCC
+
+if [ $# -eq 0 ]; then
+    echo "usage: $0 [ubuntu-version] [glibc-version] elf-file [option]"
+    echo -e "options:\n-m32: patch 32bit libc"
+    exit 1
+fi
+
+#get debug symbol and interpreter
+if [ $4 == "-m32" ]; then
+    # 32bit(i386)
+    sudo docker pull ubuntu:$1
+    sudo docker run --name tmp$1 -i -t ubuntu:$1 bash -c "apt update && apt -y install libc6-i386 libc6-dbg-i386-cross"
+    sudo docker cp tmp$1:/lib32/ld-$2.so .
+    sudo docker cp tmp$1:/lib32/libc-$2.so "libc.so.6"
+    mkdir -p ".debug"
+    sudo docker cp tmp$1:/usr/i686-linux-gnu/lib/debug/lib/i386-linux-gnu/libc-$2.so ".debug/libc.so.6"
+    mkdir -p .debug/lib/i686-linux-gnu
+    sudo docker cp tmp$1:/usr/i686-linux-gnu/lib/debug/lib/i386-linux-gnu/ld-$2.so ".debug/ld-$2.so"
+    sudo docker rm tmp$1
+    #patchelf
+    patchelf --set-interpreter `pwd`/ld-$2.so $3
+    patchelf --replace-needed  libc.so.6 "`pwd`/libc.so.6" $3
+    patchelf  --set-rpath `pwd` $3
+else
+    # 64bit(x86_64)
+    sudo docker pull ubuntu:$1
+    sudo docker run --name tmp$1 -i -t ubuntu:$1 bash -c "apt update && apt install libc6-dbg"
+    sudo docker cp tmp$1:/lib/x86_64-linux-gnu/ld-$2.so .
+    sudo docker cp tmp$1:/lib/x86_64-linux-gnu/libc-$2.so "libc.so.6"
+    mkdir -p ".debug"
+    sudo docker cp tmp$1:/usr/lib/debug/lib/x86_64-linux-gnu/libc-$2.so ".debug/libc.so.6"
+    mkdir -p .debug/lib/x86_64-linux-gnu/
+    sudo docker cp tmp$1:/usr/lib/debug/lib/x86_64-linux-gnu/ld-$2.so ".debug/ld-$2.so"
+    sudo docker rm tmp$1
+    #patchelf
+    patchelf --set-interpreter `pwd`/ld-$2.so $3
+    patchelf --replace-needed  libc.so.6 "`pwd`/libc.so.6" $3
+    patchelf  --set-rpath `pwd` $3
+fi
