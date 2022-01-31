@@ -11,12 +11,13 @@ repo = 'Townk/vim-autoclose'
 [[plugins]]
 repo = 'vim-airline/vim-airline'
 hook_add='''
-	" タブラインの表示
+  " show tabline
 	let g:airline#extensions#tabline#enabled = 1
-	" （タブが一個の場合）バッファのリストをタブラインに表示する機能をオフ
-	let g:airline#extensions#tabline#show_buffers = 0
+	let g:airline#extensions#tabline#show_buffers = 1
 	" 0でそのタブで開いてるウィンドウ数、1で左のタブから連番
 	let g:airline#extensions#tabline#tab_nr_type = 1
+  " show tab index number
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
 	" パワーラインフォントの使用
 	let g:airline_powerline_fonts = 1
 	" aleの表示
@@ -28,7 +29,14 @@ hook_add='''
 	" virtualenvを有効
 	let g:airline#extensions#virtualenv#enabled = 1
   " set airline theme
-  let g:airline_theme = 'molokai'
+  let g:airline_theme = 'base16_gruvbox_dark_hard'
+  " change status line
+  let g:airline#extensions#default#layout = [
+  \ [ 'a', 'b', 'c' ],
+  \ ['z']
+  \ ]
+  let g:airline_section_c = '%t %M'
+  let g:airline_section_z = get(g:, 'airline_linecolumn_prefix', '').'%3l:%-2v'
 '''
 
 [[plugins]]

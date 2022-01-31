@@ -25,19 +25,29 @@ inoremap <C-l> <Right>
 inoremap <C-k> <Up>                          
 inoremap <C-j> <Down>
 
+
+" ------------------------------------------------------------
+"  files
+" ------------------------------------------------------------
 " encode setting                                                                                                                                 
 set encoding=utf-8
 " binary editor
 augroup BinaryXXD
 autocmd!
         autocmd BufReadPre  *.bin let &binary =1
+        autocmd BufReadPre  *.elf let &binary =1
+        autocmd BufReadPre  *.exe let &binary =1
         autocmd BufReadPost * if &binary | silent %!xxd -g 1
         autocmd BufReadPost * set ft=xxd | endif
         autocmd BufWritePre * if &binary | %!xxd -r | endif
         autocmd BufWritePost * if &binary | silent %!xxd -g 1
         autocmd BufWritePost * set nomod | endif
 augroup END
-" edita setting
+
+
+" ------------------------------------------------------------
+"  editor
+" ------------------------------------------------------------
 set number
 set splitbelow
 set splitright
@@ -46,11 +56,16 @@ set wildmenu
 " cursorl setting
 set ruler
 set cursorline
+" save cursor
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 " tab setting
 set expandtab
 set tabstop=2
 set shiftwidth=2
-
+set list listchars=tab:\▸\-
 " color
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -59,14 +74,11 @@ set t_Co=256
 syntax on
 colorscheme gruvbox
 
+
+" ------------------------------------------------------------
+"  plugins
+" ------------------------------------------------------------
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
-
-" save cursor
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
-augroup END
-
 " load .toml
 let s:dein_dir = expand('~/.config/nvim/dein')
 if dein#load_state(s:dein_dir)
