@@ -13,7 +13,7 @@ if [ $# -eq 0 ]; then
 fi
 
 #get debug symbol and interpreter
-if [ $4 == "-m32" ]; then
+if [ test $4 = "-m32" ]; then
     # 32bit(i386)
     sudo docker pull ubuntu:$1
     sudo docker run --name tmp$1 -i -t ubuntu:$1 bash -c "apt update && apt -y install libc6-i386 libc6-dbg-i386-cross"
