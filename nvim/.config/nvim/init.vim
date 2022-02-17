@@ -29,7 +29,6 @@ inoremap <C-j> <Down>
 " ------------------------------------------------------------
 "  files
 " ------------------------------------------------------------
-" encode setting                                                                                                                                 
 set encoding=utf-8
 " binary editor
 augroup BinaryXXD
@@ -66,6 +65,19 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set list listchars=tab:\▸\-
+" hankaku space is evil
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
 " color
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
