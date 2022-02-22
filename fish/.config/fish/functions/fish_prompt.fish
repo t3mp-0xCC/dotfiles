@@ -24,7 +24,7 @@ end
 	echo -n (set_color white)"╰─"
 	echo -n " "
 	echo -n  $__return
-  printf '%s '(__fish_git_prompt)
+  printf (set_color white)'%s '(__fish_git_prompt)
 	echo -n (set_color white)
 	echo -n (set_color white)
   echo -e ""
