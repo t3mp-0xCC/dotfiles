@@ -62,3 +62,9 @@ repo = 'yuttie/comfortable-motion.vim'
 [[plugins]]
 # highlighte trailing whitespace characters
 repo = 'ntpeters/vim-better-whitespace'
+
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter"
+[[plugins]]
+# Change the color of the corresponding parentheses
+repo = 'p00f/nvim-ts-rainbow'

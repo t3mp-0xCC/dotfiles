@@ -193,7 +193,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id bash -c 'b=$(xrandr --verbose
 bindsym $mod+Shift+x exec --no-startup-id light-locker-command -l
 
 # Function Key
-bindsym $mod+F3 exec thunar
+bindsym $mod+F3 exec nautilus
 bindsym $mod+F2 exec firefox
 bindsym Mod1+F1 kill
 
@@ -221,6 +221,7 @@ for_window [class="Terminator"] floating enable
 
 # gruvbox theme(from https://github.com/a-schaefers/i3-wm-gruvbox-theme/blob/master/i3/config)
 set $bg #282828
+set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
 set $yellow #d79921
@@ -230,9 +231,9 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 
-client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused          $blue $blue $bg $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $bg $bg $fg $purple $darkgray
 client.urgent           $red $red $white $red $red
 
 #######################################

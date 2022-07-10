@@ -20,9 +20,9 @@ inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
 " Insert mode movekey bind
 inoremap <C-d> <BS>
-inoremap <C-h> <Left>                                                                                                                 
+inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-inoremap <C-k> <Up>                          
+inoremap <C-k> <Up>
 inoremap <C-j> <Down>
 
 
@@ -32,13 +32,14 @@ inoremap <C-j> <Down>
 set encoding=utf-8
 " binary editor
 augroup BinaryXXD
-autocmd!
+        autocmd!
         autocmd BufReadPre  *.bin let &binary =1
         autocmd BufReadPre  *.elf let &binary =1
         autocmd BufReadPre  *.exe let &binary =1
         autocmd BufReadPost * if &binary | silent %!xxd -g 1
         autocmd BufReadPost * set ft=xxd | endif
-        autocmd BufWritePre * if &binary | %!xxd -r | endif
+        autocmd BufWritePre * if &binary | %!xxd -r
+        autocmd BufWritePre * endif
         autocmd BufWritePost * if &binary | silent %!xxd -g 1
         autocmd BufWritePost * set nomod | endif
 augroup END
@@ -52,9 +53,17 @@ set splitbelow
 set splitright
 set noequalalways
 set wildmenu
+set confirm
+set showcmd
+set guifont=HackGenConsole:h8
 " cursorl setting
 set ruler
 set cursorline
+nmap j gj
+nmap k gk
+" split setting
+nnoremap <Return><Return> <c-w><c-w>
+
 " save cursor
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
