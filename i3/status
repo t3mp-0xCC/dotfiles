@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CONFIG_FILE=$HOME/.config/i3status-rust/config.toml
+
+exec i3status-rs $CONFIG_FILE

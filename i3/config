@@ -153,7 +153,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id \
-        "i3-nagbar -t warning -m '0w0' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
+        "i3-nagbar -t warning -m '' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -190,18 +190,19 @@ bindsym XF86MonBrightnessUp exec --no-startup-id bash -c 'b=$(xrandr --verbose |
 bindsym XF86MonBrightnessDown exec --no-startup-id bash -c 'b=$(xrandr --verbose | grep -i brightness | head -n 1 | cut -d" " -f2) && b2=$(echo -e "import math\nf = lambda x: (1 - 1/(1+math.exp(4*x-2)))\nprint(\\\"%.2f\\\" % f(-0.1+$b))" | python) && xrandr --output eDP --brightness $b2'
 
 # Lock
-bindsym $mod+Shift+x exec --no-startup-id light-locker-command -l
+#bindsym $mod+Shift+x exec --no-startup-id light-locker-command -l
 
 # Function Key
-bindsym $mod+F3 exec thunar
+bindsym $mod+F3 exec nautilus
 bindsym $mod+F2 exec firefox
 bindsym Mod1+F1 kill
 
 # Wallpaper
 exec --no-startup-id nitrogen --restore
 
-# Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# i3status-rust
+#exec --no-startup-id i3status-rs
+
 
 # nm-applet
 exec_always --no-startup-id nm-applet
@@ -215,12 +216,9 @@ exec --no-startup-id dunst
 # Ghidra
 for_window [class="Ghidra"] floating enable
 
-# terminator (for pwntools gdb.debug)
-for_window [class="terminator"] floating enable
-for_window [class="Terminator"] floating enable
-
 # gruvbox theme(from https://github.com/a-schaefers/i3-wm-gruvbox-theme/blob/master/i3/config)
 set $bg #282828
+set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
 set $yellow #d79921
@@ -230,11 +228,26 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 
-client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused          $blue $blue $bg $purple $darkgray
 client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $bg $bg $fg $purple $darkgray
 client.urgent           $red $red $white $red $red
 
 #######################################
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+bar {
+    font pango:HackGen 12
+    position top
+    status_command /usr/bin/i3status-rs
+    colors {
+        separator #666666
+        background $bg
+        statusline #dddddd
+        focused_workspace $aqua $aqua $bg
+        active_workspace $darkgray $darkgray $fg
+        inactive_workspace $bg $bg $fg
+        urgent_workspace #2f343a $red $fg
+    }
+}
