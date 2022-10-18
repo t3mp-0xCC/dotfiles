@@ -2,6 +2,9 @@ icons_format = "{icon}"
 
 [theme]
 theme = "gruvbox-dark"
+[theme.overrides]
+idle_bg = "#504945"
+idle_fg = "#ebdbb2"
 
 [icons]
 icons = "awesome"
@@ -13,6 +16,12 @@ icons = "awesome"
 
 [[block]]
 block = "cpu"
+
+[[block]]
+block = "temperature"
+format = " $icon $average"
+interval = 10
+chip = "*-pci-*"
 
 [[block]]
 block = "disk_space"
@@ -30,6 +39,10 @@ format_swap = " $icon $swap_used_percents.eng(1) "
 [[block]]
 block = "battery"
 interval = 10
+info = 60
+good = 60
+warning = 50
+critical = 15
 format = " $icon  $percentage "
 
 [[block]]
@@ -40,7 +53,7 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "net"
-device = "^wlo1"
+device = "^wl*"
 format = " $icon {$ip $signal_strength $speed_down}"
 interval = 5
 

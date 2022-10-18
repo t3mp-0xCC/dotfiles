@@ -218,6 +218,7 @@ for_window [class="Ghidra"] floating enable
 
 # gruvbox theme(from https://github.com/a-schaefers/i3-wm-gruvbox-theme/blob/master/i3/config)
 set $bg #282828
+set $bg_2 #3c3636
 set $fg #ebdbb2
 set $red #cc241d
 set $green #98971a
@@ -243,11 +244,11 @@ bar {
     status_command /usr/bin/i3status-rs
     colors {
         separator #666666
-        background $bg
+        background $bg_2
         statusline #dddddd
-        focused_workspace $aqua $aqua $bg
+        focused_workspace $aqua $aqua $bg_2
         active_workspace $darkgray $darkgray $fg
-        inactive_workspace $bg $bg $fg
+        inactive_workspace $bg_2 $bg_2 $fg
         urgent_workspace #2f343a $red $fg
     }
 }
