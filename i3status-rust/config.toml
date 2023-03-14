@@ -7,7 +7,7 @@ idle_bg = "#504945"
 idle_fg = "#ebdbb2"
 
 [icons]
-icons = "awesome"
+icons = "awesome4"
 #[icons.overrides]
 #bat = " | | "
 #bat_full = " |X| "
@@ -32,9 +32,9 @@ format = " $icon $percentage "
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = " $icon $mem_used_percents.eng(1) "
-format_swap = " $icon $swap_used_percents.eng(1) "
+#display_type = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "battery"
