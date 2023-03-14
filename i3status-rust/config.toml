@@ -60,4 +60,4 @@ interval = 5
 [[block]]
 block = "time"
 interval = 5
-format = " %a %m/%d %R "
+format = " $timestamp.datetime(f:'%a %m/%d %R') "
