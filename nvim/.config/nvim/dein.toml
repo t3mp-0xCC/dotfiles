@@ -1,9 +1,6 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-rev = 'release'
-on_i = 1
-merged = '0'
-hook_source = 'call coil398#init#coc#hook_source()'
+hook_add = '''exec 'source ' . g:rc_dir . '/coc-vim.vim' '''
 
 [[plugins]]
 repo = 'Townk/vim-autoclose'
@@ -54,10 +51,6 @@ hook_add='''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
-
-[[plugins]]
-# smooth scrolling (C-u / C-d)
-repo = 'yuttie/comfortable-motion.vim'
 
 [[plugins]]
 # highlighte trailing whitespace characters
