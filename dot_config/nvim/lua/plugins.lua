@@ -6,23 +6,26 @@ local plugins =  {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme gruvbox-material]])
-      require("config/gruvbox-material")
+      require("plugin/gruvbox-material")
     end
   },
 
+  'nvim-tree/nvim-web-devicons',
+
   {
-		"vim-airline/vim-airline",
-		lazy = false,
-		priority = 1000,
-		dependencies = {
-			"vim-airline/vim-airline-themes",
-			"ryanoasis/vim-devicons", 
-		},
-    config = function()
-      require("config/vim-airline")
-    end
-	},
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-web-devicons', opt = true },
+    event = {'BufNewFile', 'BufRead'},
+    options = { theme = 'gruvbox' },
+    config = 'require("lualine").setup()'
+  },
+
+  {
+    "andymass/vim-matchup",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -39,12 +42,32 @@ local plugins =  {
         end,
       },
     },
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        highlight = {
+          enable = true,
+          --[[ disable = { "embedded_template" } ]]
+        },
+        indent = {
+          enable = true
+        },
+        context_commentstring = {
+          enable = true,
+          enable_autocmd = false,
+        },
+        matchup = {
+          enable = true
+        }
+      }
+    end,
     cmd = { "TSUpdateSync" },
     keys = {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
     }
   },
+
   -- LSP
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -66,11 +89,24 @@ local plugins =  {
       {'rafamadriz/friendly-snippets'}, -- Optional
     }
   },
-  
-  -- Which-key
+
+  -- Editor
   {
     'folke/which-key.nvim',
     lazy = true,
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  },
+
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
   },
 
 }
