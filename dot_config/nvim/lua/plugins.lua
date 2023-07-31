@@ -2,8 +2,15 @@ local plugins =  {
 
   -- UI
   {
+    'vim-jp/vimdoc-ja',
+    lazy = true,
+    keys = {
+      { "h", mode = "c", },
+    },
+  },
+
+  {
     'sainnhe/gruvbox-material',
-    lazy = false,
     priority = 1000,
     config = function()
       require("plugin/gruvbox-material")
@@ -29,7 +36,7 @@ local plugins =  {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "VeryLazy",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -74,11 +81,30 @@ local plugins =  {
     branch = 'v1.x',
     dependencies = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      {'neovim/nvim-lspconfig'},
+
+      {
+        'williamboman/mason.nvim',
+        cmd = {
+          "Mason",
+          "MasonInstall",
+          "MasonUninstall",
+          "MasonUninstallAll",
+          "MasonLog",
+          "MasonUpdate",
+        },
+        build = ":MasonUpdate",
+      },
+
+      {
+        'williamboman/mason-lspconfig.nvim',
+        event = { "BufReadPre", "BufNewFile" },
+      },
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},         -- Required
+      {
+        'hrsh7th/nvim-cmp',
+        event = "InsertEnter",
+      },         -- Required
       {'hrsh7th/cmp-nvim-lsp'},     -- Required
       {'hrsh7th/cmp-buffer'},       -- Optional
       {'hrsh7th/cmp-path'},         -- Optional
@@ -94,6 +120,10 @@ local plugins =  {
   {
     'folke/which-key.nvim',
     lazy = true,
+    cmd = {
+      "WhichKey",
+    },
+    opts = {},
   },
 
   {

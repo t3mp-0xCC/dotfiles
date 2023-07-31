@@ -9,7 +9,6 @@
   "friendly-snippets": { "branch": "main", "commit": "bc38057e513458cb2486b6cd82d365fa294ee398" },
   "gruvbox-material": { "branch": "master", "commit": "3fff63b0d6a425ad1076a260cd4f6da61d1632b1" },
   "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
-  "line-number-interval.nvim": { "branch": "master", "commit": "13b91be1164f5ffb3f5713545fadd00af3a0371b" },
   "lsp-zero.nvim": { "branch": "v1.x", "commit": "7e1675e9e90ee08b859d75aa65609e480e55f752" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "e86a4c84ff35240639643ffed56ee1c4d55f538e" },
@@ -21,5 +20,6 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "9e519b6146512c8e2e702faf8ac48420f4f5deec" },
   "nvim-web-devicons": { "branch": "master", "commit": "efbfed0567ef4bfac3ce630524a0f6c8451c5534" },
   "vim-matchup": { "branch": "master", "commit": "ca8971739e3908973c5912cb3a0ffb6cf7bd83e7" },
+  "vimdoc-ja": { "branch": "master", "commit": "f0a65a6dcae2a2daaa23d24ab9195d453093c086" },
   "which-key.nvim": { "branch": "main", "commit": "38b990f6eabf62014018b4aae70a97d7a6c2eb88" }
 }
