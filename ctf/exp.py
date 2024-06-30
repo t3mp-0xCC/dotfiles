@@ -9,9 +9,9 @@ from time import sleep
 context.terminal = ['tmux', 'sp', '-h']
 context.log_level = "debug"
 
-chall = "./chall"
+elf_name = "./chall"
 #libc = ELF("./libc.so.6")
-elf = ELF(chall)
+elf = ELF(elf_name)
 context.binary = chall
 context.binary.checksec()
 
