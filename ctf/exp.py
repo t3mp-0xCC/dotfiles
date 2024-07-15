@@ -12,7 +12,7 @@ context.log_level = "debug"
 elf_name = "./chall"
 #libc = ELF("./libc.so.6")
 elf = ELF(elf_name)
-context.binary = chall
+context.binary = elf_name
 context.binary.checksec()
 
 if len(argv) >= 2 and argv[1] == "r":
@@ -22,9 +22,9 @@ elif len(argv) >= 2 and argv[1] == "d":
 		b main
 		c
 	"""
-	p = gdb.debug(chall,cmd)
+	p = gdb.debug(elf_name,cmd)
 else:
-    p = process(chall)
+    p = process(elf_name)
 
 def conv(x):
     if type(x) is bytes:
@@ -35,15 +35,19 @@ def conv(x):
 def sl(x):
     p.sendline(conv(x))
 
+def se(x):
+    p.send(conv(x))
+
 def sla(delim, data):
     p.sendlineafter(conv(delim), conv(data))
+
+def sa(delim, data):
+    p.sendafter(conv(delim), conv(data))
 
 
 payload = b""
 payload +=b""
 
-p.recvuntil("")
-sleep(0.5)
-p.send(payload)
+sla("", payload)
 
 p.interactive()
