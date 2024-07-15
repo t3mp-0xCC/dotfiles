@@ -12,7 +12,7 @@ vim.wo.relativenumber = true
 require "config/keymaps"
 
 -- Files
-vim.o.encofing = 'utf-8'
+vim.o.encoding = 'utf-8'
 vim.scriptencoding = 'utf-8'
 ---- binary editor (TODO)
 
@@ -31,7 +31,7 @@ vim.o.ruler = true
 vim.o.cursorline = true
 ---- color
 vim.o.termguicolors = true
-vim.o.syntax = true
+vim.o.syntax = ""
 
 -- Search
 vim.o.incsearch = true
